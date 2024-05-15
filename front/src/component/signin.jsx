@@ -4,6 +4,7 @@ import "../style/signin.css"
 import validate from "../function/signinValidation"
 import { useNavigate } from "react-router-dom"
 function Signin(){
+    Axios.defaults.withCredentials = true
     const navigate = useNavigate()
     const [state,setState] = useState({
         firstname:"",
@@ -48,13 +49,13 @@ function Signin(){
                         email: state.email.trim().toLocaleLowerCase(),
                         password: state.password.trim()
                     };
-                    const response = await Axios.post("http://localhost:3001/user/signin", postData);
-                    if(response.data.data.status){
-                        alert(response.data.data.message)
-                    }
+                    const response = await Axios.post("http://localhost:3001/auth/signin", postData);
+                    console.log(response.data)
+                    // if(response.data.data.status){
+                    //     console.log(response)
+                    // }
                 } catch (error) {
                     console.log(error);
-                    navigate("/home")
                 }
             }
             sendData()

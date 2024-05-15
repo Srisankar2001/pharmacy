@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const dotenv = require('dotenv')
 const db = require('../db/db')
 const jwt = require('jsonwebtoken')
-const { isAuthandicated , isAdmin , decode , logout } = require('../functions/authFunctions')
+const { isAuthenticated , isAdmin , decode , logout } = require('../functions/authFunctions')
 
 const router = express.Router()
 dotenv.config()
@@ -11,7 +11,7 @@ const key = process.env.key
 
 router.post("/signin",(req,res)=>{
     const { email , password } = req.body
-    const sql_email = "SELECT * FROM user WHERE email = ?"
+    const sql = "SELECT * FROM user WHERE email = ?"
     db.query(sql,[email],(err,result)=>{
         if(err){
             return res.status(400).json({status:false,message:err})
@@ -28,7 +28,7 @@ router.post("/signin",(req,res)=>{
                                 }else{
                                     if(token){
                                         res.cookie('token',token,{maxAge:60*60*24*1000})
-                                        return res.status(200).json({status:true})
+                                        return res.status(200).json({status:true,message:result[0]})
                                     }else{
                                         return res.status(400).json({status:false,message:"Token generate error in Server"})
                                     }
@@ -46,7 +46,7 @@ router.post("/signin",(req,res)=>{
     })
 })
 
-router.get("/isAuthendicated",isAuthandicated,(req,res)=>{
+router.get("/isAuthendicated",isAuthenticated,(req,res)=>{
     return res.status(200).json({ status: true});
 })
 
@@ -54,7 +54,13 @@ router.get("/isAdmin",isAdmin,(req,res)=>{
     return res.status(200).json({status:true});
 })
 
-router.get("/details",decode)
+router.get("/details",decode,(req,res)=>{
+    return res.status(200).json({status:true,data:req.decoded})
+})
 
 
-router.get("/logout",logout)
+router.get("/logout",logout,(req,res)=>{
+    return res.status(200)
+})
+
+module.exports = router

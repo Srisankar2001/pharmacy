@@ -40,7 +40,7 @@ const isAdmin = (req,res,next) => {
     }
 }
 
-const decode = (req,res) => {
+const decode = (req,res,next) => {
     const token = req.cookies.token;
     if (!token) {
         return res.status(403).json({ status: false, message: "Token is missing." });
@@ -49,15 +49,15 @@ const decode = (req,res) => {
             if (err) {
                 return res.status(403).json({ status: false, message: "Token is invalid or expired." });
             } else {
-                const decodedData = decoded
-                return res.status(200).json({status:true,data:decodedData})
+                req.decoded =  decoded
+                next()
             }
         });
     }
 }
 
-const logout = (req,res) => {
+const logout = (req,res,next) => {
     res.clearCookie('token')
-    return res.status(200)
+    next()
 }
 module.exports = { isAuthenticated , isAdmin , decode ,logout }

@@ -4,6 +4,21 @@ const db = require('../db/db')
 
 const router = express.Router()
 
+router.get("/get",(req,res)=>{
+    const sql = "SELECT * FROM category"
+    db.query(sql,(err,result)=>{
+        if(err){
+            return res.status(500).json({status:false,message:err})
+        }else{
+            if(result){
+                return res.status(200).json({status:true,data:result})
+            }else{
+                return res.status(400).json({status:false,message:"DB get error"})
+            }
+        }
+    })
+})
+
 router.post("/add",(req,res)=>{
     const { name } = req.body
 

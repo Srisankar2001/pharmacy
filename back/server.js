@@ -8,19 +8,23 @@ const userRouter = require('./route/user')
 const adminRouter = require('./route/admin')
 const categoryRouter = require('./route/category')
 const productRouter = require('./route/product')
+const authRouter = require('./route/auth')
 
 const app = express()
 
 
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors())
+app.use(cors({
+    origin : 'http://localhost:3000',
+    credentials : true
+}))
 
 app.use("/user",userRouter)
 app.use("/admin",adminRouter)
 app.use("/category",categoryRouter)
 app.use("/product",productRouter)
-
+app.use("/auth",authRouter)
 
 db.connect((err)=>{
     if(err){

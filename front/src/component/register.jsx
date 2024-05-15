@@ -4,6 +4,7 @@ import "../style/register.css"
 import validate from "../function/registerValidation"
 import { useNavigate } from "react-router-dom"
 function Register(){
+    Axios.defaults.withCredentials = true
     const navigate = useNavigate()
     const [state,setState] = useState({
         firstname:"",
@@ -62,10 +63,10 @@ function Register(){
                     const response = await Axios.post("http://localhost:3001/user/register", postData);
                     if(response.data.data.status){
                         alert(response.data.data.message)
+                        navigate("/")
                     }
                 } catch (error) {
                     console.log(error);
-                    navigate("/home")
                 }
             }
             sendData()
