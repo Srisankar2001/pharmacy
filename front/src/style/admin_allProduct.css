@@ -1,0 +1,78 @@
+.admin_allProduct-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.admin_allProduct-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.admin_allProduct-msg {
+    text-align: center;
+    color: #888;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.admin_allProduct_list {
+    list-style: none;
+    padding: 0;
+}
+
+.admin_allProduct_item_div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.admin_allProduct_item_data_div {
+    flex: 1;
+    margin-right: 10px;
+    font-size: 16px;
+    color: #555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Center text horizontally */
+}
+
+.admin_allProduct_item_button {
+    display: flex;
+}
+
+.admin_allProduct_item_button_update,
+.admin_allProduct_item_button_delete {
+    padding: 8px 12px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.admin_allProduct_item_button_update {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.admin_allProduct_item_button_update:hover {
+    background-color: #45a049;
+}
+
+.admin_allProduct_item_button_delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.admin_allProduct_item_button_delete:hover {
+    background-color: #e53935;
+}

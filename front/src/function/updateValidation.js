@@ -9,13 +9,12 @@ export default function validate(state){
         buyingPrice : "",
         sellingPrice : "",
         stock : "",
-        company : "",
-        image : ""
+        company : ""
     }
 
     if(state.name.trim() === ""){
         error.name = "Name field is empty"
-    }else if(!(/^[a-zA-Z0-9\s]{2,}$/.test(state.name.trim()))){
+    }else if(!(/^[a-zA-Z]{2,}$/.test(state.name.trim()))){
         error.name = "Invalid name"
     }else{
         error.name = ""
@@ -97,10 +96,6 @@ export default function validate(state){
         error.company = ""
     }
 
-    if(state.image === ""){
-        error.image = "Image not selected"
-    }else{
-        error.image = ""
-    }
+   
     return error;
 }
