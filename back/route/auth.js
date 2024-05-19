@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const dotenv = require('dotenv')
 const db = require('../db/db')
 const jwt = require('jsonwebtoken')
-const { isAuthenticated , isAdmin , decode , logout } = require('../functions/authFunctions')
+const { isAuthenticated , isAdmin , decode ,isUser } = require('../functions/authFunctions')
 
 const router = express.Router()
 dotenv.config()
@@ -54,13 +54,17 @@ router.get("/isAdmin",isAdmin,(req,res)=>{
     return res.status(200).json({status:true});
 })
 
+router.get("/isUser",isUser,(req,res)=>{
+    return res.status(200).json({status:true});
+})
+
 router.get("/details",decode,(req,res)=>{
     return res.status(200).json({status:true,data:req.decoded})
 })
 
-
-router.get("/logout",logout,(req,res)=>{
-    return res.status(200)
-})
+router.get("/logout", (req, res) => {
+    res.clearCookie('token');
+    res.status(200).send("Logged out successfully.");
+});
 
 module.exports = router

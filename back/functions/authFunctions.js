@@ -40,6 +40,26 @@ const isAdmin = (req,res,next) => {
     }
 }
 
+const isUser = (req,res,next) => {
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(403).json({ status: false, message: "Token is missing." });
+    } else {
+        jwt.verify(token, key, (err, decoded) => {
+            if (err) {
+                return res.status(403).json({ status: false, message: "Token is invalid or expired." });
+            } else {
+                if(decoded.role === "USER"){
+                    next()
+                }else{
+                    return res.status(403).json({status:false,message:"Admin is not allowed to access"})
+                }
+            }
+        });
+    }
+}
+
+
 const decode = (req,res,next) => {
     const token = req.cookies.token;
     if (!token) {
@@ -56,8 +76,5 @@ const decode = (req,res,next) => {
     }
 }
 
-const logout = (req,res,next) => {
-    res.clearCookie('token')
-    next()
-}
-module.exports = { isAuthenticated , isAdmin , decode ,logout }
+
+module.exports = { isAuthenticated , isAdmin , decode , isUser  }

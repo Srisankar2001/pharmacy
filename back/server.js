@@ -9,7 +9,7 @@ const adminRouter = require('./route/admin')
 const categoryRouter = require('./route/category')
 const productRouter = require('./route/product')
 const authRouter = require('./route/auth')
-
+const cartRouter = require('./route/cart')
 const app = express()
 
 app.use(express.static("public"))
@@ -25,6 +25,8 @@ app.use("/admin",adminRouter)
 app.use("/category",categoryRouter)
 app.use("/product",productRouter)
 app.use("/auth",authRouter)
+app.use("/cart",cartRouter)
+
 
 db.connect((err)=>{
     if(err){

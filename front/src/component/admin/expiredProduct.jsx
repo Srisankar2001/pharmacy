@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import  Axios  from "axios";
 import { useNavigate } from "react-router-dom";
-import "../../style/admin_allProduct.css"
+import "../../style/admin_expiredProduct.css"
 import AdminNavbar from "./adminNavbar";
-function AllProduct(){
+function ExpiredProduct(){
     Axios.defaults.withCredentials = true
     const navigate = useNavigate()
    const [state,setState] = useState({
@@ -25,7 +25,6 @@ function AllProduct(){
             }
         }catch(error){
             console.log(error)
-            navigate("/")
         }
     }
 
@@ -42,6 +41,7 @@ function AllProduct(){
             }
         }catch(error){
             console.log(error)
+            navigate("/")
         }
     }
 
@@ -75,7 +75,7 @@ function AllProduct(){
 useEffect(()=>{
     const getProduct = async() => {
         try{
-            const response = await Axios.get("http://localhost:3001/product/get")
+            const response = await Axios.get("http://localhost:3001/product/get_expired")
             if(!response.data.status){
                 alert("Error fetching Product")
             }else{
@@ -91,25 +91,25 @@ useEffect(()=>{
 const renderProduct = () => {
     if(data.length === 0){
         return(
-            <h3 className="admin_allProduct_msg">No products to display</h3>
+            <h3 className="admin_expiredProduct-msg">No products to display</h3>
         )
     }
 
     return(
-        <ul className="admin_allProduct_list">
+        <ul className="admin_expiredProduct_list">
         {
              data.map(item=>(
-                <div className="admin_allProduct_item_div" key={item.id}>
-                   <div className="admin_allProduct_item_data_div">
-                        <span className="admin_allProduct_item_data_div">{item.name}</span>
-                        <span className="admin_allProduct_item_data_div">{item.quantity}</span>
-                        <span className="admin_allProduct_item_data_div">{item.stock} Units</span>
-                        <span className="admin_allProduct_item_data_div">{Number(item.selling_price).toFixed(2)} LKR</span>
-                        <span className="admin_allProduct_item_data_div">{item.expiry_date.slice(0,10)}</span>
+                <div className="admin_expiredProduct_item_div" key={item.id}>
+                   <div className="admin_expiredProduct_item_data_div">
+                        <span className="admin_expiredProduct_item_data_div">{item.name}</span>
+                        <span className="admin_expiredProduct_item_data_div">{item.quantity}</span>
+                        <span className="admin_expiredProduct_item_data_div">{item.stock} Units</span>
+                        <span className="admin_expiredProduct_item_data_div">{Number(item.selling_price).toFixed(2)} LKR</span>
+                        <span className="admin_expiredProduct_item_data_div">{item.expiry_date.slice(0,10)}</span>
                    </div>
-                    <div className="admin_allProduct_item_button">
-                        <input type="button" value="Update" className="admin_allProduct_item_button_update" onClick={() =>handleUpdate(item.id)}/>
-                        <input type="button" value="Delete" className="admin_allProduct_item_button_delete" onClick={()=>handleDelete(item.id)}/>
+                    <div className="admin_expiredProduct_item_button">
+                        <input type="button" value="Update" className="admin_expiredProduct_item_button_update" onClick={() =>handleUpdate(item.id)}/>
+                        <input type="button" value="Delete" className="admin_expiredProduct_item_button_delete" onClick={()=>handleDelete(item.id)}/>
                     </div>
                 </div>
             ))
@@ -144,16 +144,16 @@ const handleDelete = (id) => {
     sendDelete()
 }
 return(
-    <div className="admin_allProduct_wrapper">
-        <div className="admin_allProduct_navbar">
+    <div className="admin_expiredProduct-wrapper">
+        <div className="admin_expiredProduct_navbar">
             <AdminNavbar/>
         </div>
-        <div className="admin_allProduct_container">
-            <h1 className="admin_allProduct_heading">All Product Page</h1>
+        <div className="admin_expiredProduct-container">
+            <h1 className="admin_expiredProduct-heading">All Product Page</h1>
             {renderProduct()}
         </div>
     </div>
 )
 }
 
-export default AllProduct
+export default ExpiredProduct

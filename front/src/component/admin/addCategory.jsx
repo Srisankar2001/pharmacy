@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import  Axios  from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../style/admin_addCategory.css"
+import AdminNavbar from "./adminNavbar";
 
 function AddCategory(){
     Axios.defaults.withCredentials = true
@@ -25,6 +26,7 @@ function AddCategory(){
             }
         }catch(error){
             console.log(error)
+            navigate("/")
         }
     }
 
@@ -120,7 +122,11 @@ const handleSubmit = (e) => {
     }
 }
 return(
-    <div className="admin_addCategory-container">
+    <div className="admin_addCategory-wrapper">
+        <div className="admin_addCategory_navbar">
+            <AdminNavbar/>
+        </div>
+        <div className="admin_addCategory-container">
         <h1 className="admin_addCategory-heading">Add Category Page</h1>
         <form className="admin_addCategory-form" onSubmit={handleSubmit} onReset={handleReset}>
             <div className="admin_addCategory-input-div">
@@ -133,6 +139,7 @@ return(
                 <input type="reset" className="admin_addCategory-button-reset" value="Clear"/>
             </div>
         </form>
+    </div>
     </div>
 )
 }

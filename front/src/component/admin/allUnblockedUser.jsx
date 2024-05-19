@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import  Axios  from "axios";
 import { useNavigate } from "react-router-dom";
-import "../../style/admin_allProduct.css"
+import "../../style/admin_allUnblockUser.css"
 import AdminNavbar from "./adminNavbar";
-function AllProduct(){
+function AllUnblockUser(){
     Axios.defaults.withCredentials = true
     const navigate = useNavigate()
    const [state,setState] = useState({
@@ -73,43 +73,41 @@ function AllProduct(){
 
 
 useEffect(()=>{
-    const getProduct = async() => {
+    const getUser = async() => {
         try{
-            const response = await Axios.get("http://localhost:3001/product/get")
+            const response = await Axios.get("http://localhost:3001/user/get_unblock")
             if(!response.data.status){
-                alert("Error fetching Product")
+                alert("Error fetching User")
             }else{
                 setData(response.data.data)
             }
         }catch(error){
-            alert("Error fetching Product")
+            alert("Error fetching User")
         }
     }
-    getProduct()
+    getUser()
 },[navigate,data])
 
-const renderProduct = () => {
+const renderUser = () => {
     if(data.length === 0){
         return(
-            <h3 className="admin_allProduct_msg">No products to display</h3>
+            <h3 className="admin_allUnblockUser_msg">No unblocked user to display</h3>
         )
     }
 
     return(
-        <ul className="admin_allProduct_list">
+        <ul className="admin_allUnblockUser_list">
         {
              data.map(item=>(
-                <div className="admin_allProduct_item_div" key={item.id}>
-                   <div className="admin_allProduct_item_data_div">
-                        <span className="admin_allProduct_item_data_div">{item.name}</span>
-                        <span className="admin_allProduct_item_data_div">{item.quantity}</span>
-                        <span className="admin_allProduct_item_data_div">{item.stock} Units</span>
-                        <span className="admin_allProduct_item_data_div">{Number(item.selling_price).toFixed(2)} LKR</span>
-                        <span className="admin_allProduct_item_data_div">{item.expiry_date.slice(0,10)}</span>
+                <div className="admin_allUnblockUser_item_div" key={item.id}>
+                   <div className="admin_allUnblockUser_item_data_div">
+                        <span className="admin_allUnblockUser_item_data_div">{item.id}</span>
+                        <span className="admin_allUnblockUser_item_data_div">{item.firstname}</span>
+                        <span className="admin_allUnblockUser_item_data_div">{new Date(item.dob).toISOString().slice(0,10)}</span>
+                        <span className="admin_allUnblockUser_item_data_div">{item.email}</span>
                    </div>
-                    <div className="admin_allProduct_item_button">
-                        <input type="button" value="Update" className="admin_allProduct_item_button_update" onClick={() =>handleUpdate(item.id)}/>
-                        <input type="button" value="Delete" className="admin_allProduct_item_button_delete" onClick={()=>handleDelete(item.id)}/>
+                    <div className="admin_allUnblockUser_item_button">
+                        <input type="button" value="Block" className="admin_allUnblockUser_item_button_block" onClick={() =>handleUnblock(item.id)}/>
                     </div>
                 </div>
             ))
@@ -119,41 +117,40 @@ const renderProduct = () => {
     
 }
 
-const handleUpdate = (id) => {
-    navigate(`/updateproduct/${id}`)
-}
 
-const handleDelete = (id) => {
-    const config = {
-        headers: {
-          'content-type': 'application/json',
-        },
-      };
-    const sendDelete = async() => {
+const handleUnblock = (id) => {
+    const unblock = async() => {
         try{
-            const response = await Axios.delete("http://localhost:3001/product/delete",{data:{id:id}},config)
-            if(!response.data.status){
-                alert("Error deleting Product")
+            const config = {
+                headers: {
+                  'content-type': 'application/json',
+                },
+              };
+            const response = await Axios.post("http://localhost:3001/user/block",{id:id},config)
+            if(response.data.status){
+                alert(response.data.message)
             }else{
                 alert(response.data.message)
             }
         }catch(error){
-            alert("Error deleting Product")
+            alert("Error in blocking User")
         }
     }
-    sendDelete()
+    unblock()
 }
+
+
 return(
-    <div className="admin_allProduct_wrapper">
-        <div className="admin_allProduct_navbar">
+    <div className="admin_allUnblockUser_wrapper">
+        <div className="admin_allUnblockUser_navbar">
             <AdminNavbar/>
         </div>
-        <div className="admin_allProduct_container">
-            <h1 className="admin_allProduct_heading">All Product Page</h1>
-            {renderProduct()}
+        <div className="admin_allUnblockUser_container">
+            <h1 className="admin_allUnblockUser_heading">All Unblocked User Page</h1>
+            {renderUser()}
         </div>
     </div>
 )
 }
 
-export default AllProduct
+export default AllUnblockUser

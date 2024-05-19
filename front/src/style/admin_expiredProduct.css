@@ -1,42 +1,42 @@
-.admin_allProduct_wrapper {
+.admin_expiredProduct-wrapper {
     display: flex;
-    height: 100vh;
+    height: 100vh; /* Ensuring full viewport height */
     font-family: Arial, sans-serif;
 }
 
-.admin_allProduct_navbar {
+.admin_expiredProduct_navbar {
     width: 250px;
 }
 
-.admin_allProduct_container {
-    width: calc(100% - 250px); 
-    margin: 20px 50px;
+.admin_expiredProduct-container {
+    width: calc(100% - 250px); /* Adjusted width to accommodate the navbar */
+    margin: 20px 50px; /* Added margin to create space and avoid overlapping with the navbar */
     padding: 20px;
     background-color: #f9f9f9;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
-.admin_allProduct_heading {
+.admin_expiredProduct-heading {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
 }
 
-.admin_allProduct_msg {
+.admin_expiredProduct-msg {
     text-align: center;
     color: #888;
     font-size: 18px;
     margin-top: 20px;
 }
 
-.admin_allProduct_list {
+.admin_expiredProduct_list {
     list-style: none;
     padding: 0;
 }
 
-.admin_allProduct_item_div {
+.admin_expiredProduct_item_div {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,7 +44,7 @@
     border-bottom: 1px solid #eee;
 }
 
-.admin_allProduct_item_data_div {
+.admin_expiredProduct_item_data_div {
     flex: 1;
     margin-right: 10px;
     font-size: 16px;
@@ -55,12 +55,12 @@
     text-align: center; /* Center text horizontally */
 }
 
-.admin_allProduct_item_button {
+.admin_expiredProduct_item_button {
     display: flex;
 }
 
-.admin_allProduct_item_button_update,
-.admin_allProduct_item_button_delete {
+.admin_expiredProduct_item_button_update,
+.admin_expiredProduct_item_button_delete {
     padding: 8px 12px;
     margin-left: 10px;
     border: none;
@@ -69,20 +69,20 @@
     font-size: 14px;
 }
 
-.admin_allProduct_item_button_update {
+.admin_expiredProduct_item_button_update {
     background-color: #4CAF50;
     color: white;
 }
 
-.admin_allProduct_item_button_update:hover {
+.admin_expiredProduct_item_button_update:hover {
     background-color: #45a049;
 }
 
-.admin_allProduct_item_button_delete {
+.admin_expiredProduct_item_button_delete {
     background-color: #f44336;
     color: white;
 }
 
-.admin_allProduct_item_button_delete:hover {
+.admin_expiredProduct_item_button_delete:hover {
     background-color: #e53935;
 }

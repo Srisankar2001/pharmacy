@@ -3,6 +3,7 @@ import  Axios  from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../style/admin_addAdmin.css"
 import validate from "../../function/registerValidation";
+import AdminNavbar from "./adminNavbar";
 
 function AddAdmin(){
     Axios.defaults.withCredentials = true
@@ -26,6 +27,7 @@ function AddAdmin(){
             }
         }catch(error){
             console.log(error)
+            navigate("/")
         }
     }
 
@@ -143,6 +145,10 @@ const handleSubmit = (e) => {
     }
 }
 return(
+    <div className="admin_addAdmin-wrapper">
+        <div className="admin_addAdmin_navbar">
+                <AdminNavbar/>
+            </div>
     <div className="admin_addAdmin-container">
         <h1 className="admin_addAdmin-heading">Add Admin Page</h1>
         <form className="admin_addAdmin-form" onSubmit={handleSubmit} onReset={handleReset}>
@@ -181,6 +187,7 @@ return(
                 <input type="reset" className="admin_addAdmin-button-reset" value="Clear"/>
             </div>
         </form>
+    </div>
     </div>
 )
 }

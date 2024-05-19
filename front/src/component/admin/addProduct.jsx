@@ -3,6 +3,7 @@ import  Axios  from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../style/admin_addProduct.css"
 import validate from "../../function/productValidation";
+import AdminNavbar from "./adminNavbar";
 function AddProduct(){
     Axios.defaults.withCredentials = true
     const navigate = useNavigate()
@@ -28,6 +29,7 @@ function AddProduct(){
             }
         }catch(error){
             console.log(error)
+            navigate("/")
         }
     }
 
@@ -210,7 +212,11 @@ const handleSubmit = (e) => {
     }
 }
 return(
-    <div className="admin_addProduct-container">
+    <div className="admin_addProduct-wrapper">
+        <div className="admin_addProduct_navbar">
+            <AdminNavbar/>
+        </div>
+        <div className="admin_addProduct-container">
         <h1 className="admin_addProduct-heading">Add Product Page</h1>
         <form className="admin_addProduct-form" onSubmit={handleSubmit} onReset={handleReset}>
             <div className="admin_addProduct-input-div">
@@ -278,6 +284,7 @@ return(
                 <input type="reset" className="admin_addProduct-button-reset" value="Clear"/>
             </div>
         </form>
+    </div>
     </div>
 )
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import  Axios  from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../style/admin_dashboard.css"
-
+import AdminNavbar from "./adminNavbar";
 function AdminDashboard(){
     Axios.defaults.withCredentials = true
     const navigate = useNavigate()
@@ -25,6 +25,7 @@ function AdminDashboard(){
             }
         }catch(error){
             console.log(error)
+            navigate("/")
         }
     }
 
@@ -65,15 +66,20 @@ function AdminDashboard(){
     if(state.id){
         getDetails()
     }
-   },[navigate,state.id])
+   },[state.id,navigate])
     return(
-        <div className="admin_dashboard_container">
+        <div className="admin_dashboard_wrapper">
+            <div className="admin_dashboard_navbar">
+                <AdminNavbar/>
+            </div>
+            <div className="admin_dashboard_container">
             <h1 className="admin_dashboard_heading">Dashboard</h1>
             <div className="admin_dashboard_itemdiv">
             {state.id && <span className="admin_dashboard_item">Id : {state.id}</span>}
             {state.firstname && <span className="admin_dashboard_item">First Name : {state.firstname}</span>}
             {state.lastname && <span className="admin_dashboard_item">Last Name : {state.lastname}</span>}
             {state.email && <span className="admin_dashboard_item">Email : {state.email}</span>}
+            </div>
             </div>
         </div>
     )

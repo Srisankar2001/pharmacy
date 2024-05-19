@@ -33,6 +33,24 @@ router.get("/get",(req,res)=>{
     })
 })
 
+
+router.get("/get_expired",(req,res)=>{
+    const sql = "SELECT * FROM product WHERE expiry_date < ?"
+    const currentDateTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    db.query(sql,[currentDateTime],(err,result)=>{
+        if(err){
+            return res.status(500).json({status:false,message:err})
+        }else{
+            if(result){
+                return res.status(200).json({status:true,data:result})
+            }else{
+                return res.status(400).json({status:false,message:"DB fetch error"})
+            }
+        }
+    })
+})
+
+
 router.get("/getproduct/:id",(req,res)=>{
     const { id } =req.params
     const sql = "SELECT * FROM product WHERE id = ?"
@@ -105,4 +123,33 @@ router.delete("/delete",(req,res)=>{
     })
 })
 
+router.get("/get_home",(req,res)=>{
+    const sql = "SELECT * FROM product ORDER BY RAND() LIMIT 8"
+    db.query(sql,(err,result)=>{
+        if (err) {
+            return res.status(500).json({ status: false, message: err });
+        } else {
+            if (result) {
+                return res.status(200).json({ status: true, data:result});
+            } else {
+                return res.status(400).json({ status: false, message: "DB fetch error" });
+            }
+        }
+    })
+})
+
+router.get("/get_product",(req,res)=>{
+    const sql = "SELECT * FROM product ORDER BY RAND()"
+    db.query(sql,(err,result)=>{
+        if (err) {
+            return res.status(500).json({ status: false, message: err });
+        } else {
+            if (result) {
+                return res.status(200).json({ status: true, data:result});
+            } else {
+                return res.status(400).json({ status: false, message: "DB fetch error" });
+            }
+        }
+    })
+})
 module.exports = router

@@ -24,6 +24,7 @@ router.post("/details",(req,res)=>{
         }
     })
 })
+
 router.post("/register",(req,res)=>{
     const { firstname , lastname , email , password ,dob } = req.body
     bcrypt.hash(password,10,(err,hash)=>{

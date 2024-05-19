@@ -1,3 +1,13 @@
+.admin_addProduct-wrapper {
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.admin_addProduct_navbar {
+    width: 250px;
+}
+
 .admin_addProduct-container {
     max-width: 400px;
     margin: auto;
@@ -8,7 +18,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
 }
 
@@ -33,7 +43,8 @@
     color: #555;
 }
 
-.admin_addProduct-input-field {
+.admin_addProduct-input-field,
+.admin_addProduct-input-dropdown {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -42,11 +53,6 @@
 }
 
 .admin_addProduct-input-dropdown {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
     appearance: none;
     background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="%23555555"><path fill-rule="evenodd" d="M10 13.172l-6.364-6.364a.5.5 0 1 1 .708-.708L10 11.757l5.657-5.657a.5.5 0 0 1 .708.708L10.707 13.17a.5.5 0 0 1-.707 0z"/></svg>') no-repeat right 10px center;
     background-size: 10px;

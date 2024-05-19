@@ -1,0 +1,126 @@
+/* user_product.css */
+
+.user_product_wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .user_product_navbar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .user_product_container {
+    display: flex;
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 60px;
+  }
+  
+  .user_product_category {
+    flex: 0 0 200px;
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-right: 1px solid #ddd;
+  }
+  
+  .user_product_category_heading {
+    margin-bottom: 10px;
+  }
+  
+  .user_product_list_category {
+    margin-bottom: 10px;
+  }
+  
+  .user_product_item_category_name,
+  .user_product_item_category_name_select {
+    cursor: pointer;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .user_product_item_category_name:hover {
+    background-color: #ddd;
+  }
+  
+  .user_product_item_category_name_select {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .user_product_product {
+    flex: 1;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px; /* Add space between products */
+    justify-items: center;
+  }
+  
+  .user_product_product_heading {
+    grid-column: span 4;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .user_product_list_product {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    transition: box-shadow 0.3s;
+    box-sizing: border-box;
+    width: 100%; /* Ensures the item fills its grid cell */
+  }
+  
+  .user_product_list_product:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user_product_item_image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .user_product_item_product_name,
+  .user_product_item_product_price,
+  .user_product_item_product_quantity,
+  .user_product_item_product_description {
+    margin-bottom: 5px;
+  }
+  
+  .user_product_item_btn_div {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .user_product_item_btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .user_product_item_btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .user_product_message_category,
+  .user_product_message_product {
+    color: #888;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  

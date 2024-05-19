@@ -1,0 +1,41 @@
+.admin_navbar_container {
+    background-color: #333;
+    color: #fff;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.admin_dashboard_heading {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: royalblue;
+}
+
+.admin_navbar_ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.admin_navbar_li {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.admin_navbar_link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    display: block;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.admin_navbar_link:hover {
+    background-color: royalblue;
+}

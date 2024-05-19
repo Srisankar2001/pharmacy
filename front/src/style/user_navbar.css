@@ -1,0 +1,45 @@
+.user_navbar_container {
+    position: fixed; /* Fixed position at the top */
+    top: 0; /* Align to the top of the page */
+    left: 0; /* Align to the left edge */
+    width: 100%; /* Full width */
+    background-color: #333; /* Background color */
+    color: white; /* Text color */
+    padding: 20px; /* Padding around the content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    z-index: 1000; /* Ensure it stays on top */
+    display: flex; /* Flexbox for horizontal layout */
+    flex-direction: row; /* Align items horizontally */
+    justify-content: center; /* Space between heading and links */
+    align-items: center; /* Center items vertically */
+}
+
+.user_dashboard_heading {
+    margin: 0;
+    font-size: 24px;
+    color: white;
+}
+
+.user_navbar_ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0;
+    margin: 0; /* Remove default margins */
+    display: flex; /* Flex layout for horizontal alignment */
+}
+
+.user_navbar_li {
+    margin-left: 20px; /* Space between list items */
+}
+
+.user_navbar_link {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Link color */
+    font-size: 18px; /* Font size */
+    padding: 8px 16px; /* Padding around the link */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.user_navbar_link:hover {
+    background-color: #575757; /* Background color on hover */
+}
