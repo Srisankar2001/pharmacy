@@ -16,6 +16,7 @@ import Logout from "./component/logout";
 import Home from "./component/user/home";
 import Product from "./component/user/product";
 import Cart from "./component/user/cart";
+import Order from "./component/user/order";
 
 
 
@@ -46,6 +47,7 @@ function App() {
         <Route path="/home" element={<Home/>}/>
         <Route path="/product" element={<Product/>}/>
         <Route path="/cart" element={<Cart/>}/>
+        <Route path="/order" element={<Order/>}/>
         <Route path="/logout" element={<Logout/>}/>
       </Routes>
     </Router>

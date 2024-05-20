@@ -10,6 +10,7 @@ const categoryRouter = require('./route/category')
 const productRouter = require('./route/product')
 const authRouter = require('./route/auth')
 const cartRouter = require('./route/cart')
+const orderRouter = require('./route/order')
 const app = express()
 
 app.use(express.static("public"))
@@ -26,6 +27,7 @@ app.use("/category",categoryRouter)
 app.use("/product",productRouter)
 app.use("/auth",authRouter)
 app.use("/cart",cartRouter)
+app.use("/order",orderRouter)
 
 
 db.connect((err)=>{

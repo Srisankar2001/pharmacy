@@ -35,6 +35,10 @@ function UserNavbar(){
                 <li className="user_navbar_li">
                     <a href="/cart" className="user_navbar_link">Cart</a>
                 </li> : null}
+                {isUser ? 
+                <li className="user_navbar_li">
+                    <a href="/order" className="user_navbar_link">Order</a>
+                </li> : null}
             </ul>
         </div>
     )

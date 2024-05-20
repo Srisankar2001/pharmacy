@@ -7,7 +7,6 @@ import "../../style/user_cart.css";
 function Cart() {
     Axios.defaults.withCredentials = true;
     const navigate = useNavigate();
-    const [isAuth, setAuth] = useState(false);
     const [state, setState] = useState({
         id: "",
         firstname: "",
@@ -23,7 +22,6 @@ function Cart() {
             try {
                 const response = await Axios.get("http://localhost:3001/auth/isUser");
                 if (response.data.status) {
-                    setAuth(true);
                     getId();
                 }
             } catch (error) {
@@ -174,8 +172,8 @@ function Cart() {
             <div className="user_cart_list" key={item.id}>
                 <img src={`http://localhost:3001/images/${item.url}`} alt={item.name} className="user_cart_item_image" />
                 <span className="user_cart_item_name">{item.name}</span>
-                <span className="user_cart_item_price">{item.price}</span>
-                <span className="user_cart_item_quantity">{item.cartQuantity}</span>
+                <span className="user_cart_item_price">{Number(item.selling_price).toFixed(2)} LKR</span>
+                <span className="user_cart_item_price"> X </span>
                 <input
                     type="number"
                     name="quantity"
@@ -184,15 +182,60 @@ function Cart() {
                     onChange={(e) => {
                             handleQuantityChange(index, e.target.value);
                     }}
+                    className="user_cart_item_input"
                 />
+                 <span className="user_cart_item_price">{(Number(item.selling_price)*Number(item.cartQuantity)).toFixed(2)} LKR</span>
                 <div className="user_cart_item_btn_div">
-                    <input type="button" value="Update" onClick={() => handleUpdate(item.productId, item.cartQuantity , item.newCartQuantity)} className="user_cart_item_btn_update" />
-                    <input type="button" value="Delete" onClick={() => handleDelete(item.productId)} className="user_cart_item_btn_delete" />
+                    <input type="button" value="Update" onClick={() => handleUpdate(item.id, item.cartQuantity , item.newCartQuantity)} className="user_cart_item_btn_update" />
+                    <input type="button" value="Delete" onClick={() => handleDelete(item.id)} className="user_cart_item_btn_delete" />
                 </div>
             </div>
         ));
     };
 
+    const handleOrder = async()=>{
+        try {
+            const config = {
+                headers: {
+                    'content-type': 'application/json',
+                },
+            };
+            const postData = {
+                userId: state.id
+            };
+            const response = await Axios.post("http://localhost:3001/order/order", postData , config);
+            if (response.data.status) {
+                alert(response.data.message);
+                navigate("/home"); 
+            } else {
+                console.log(response.data.message);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    
+    const handleClear = async() => {
+        try {
+            const config = {
+                headers: {
+                    'content-type': 'application/json',
+                },
+            };
+            const postData = {
+                userId: state.id
+            };
+            const response = await Axios.delete("http://localhost:3001/cart/clear", {data :postData} , config);
+            if (response.data.status) {
+                alert(response.data.message);
+                navigate("/home"); 
+            } else {
+                console.log(response.data.message);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <div className="user_cart_wrapper">
             <div className="user_cart_navbar">
@@ -202,6 +245,10 @@ function Cart() {
                 <div className="user_cart_grid">
                     {renderData()}
                 </div>
+            </div>
+            <div className="user_cart_order_div">
+                <input type="button" value="Order" onClick={handleOrder} className="user_cart_order"/>
+                <input type="button" value="Clear" onClick={handleClear} className="user_cart_clear"/>
             </div>
         </div>
     );

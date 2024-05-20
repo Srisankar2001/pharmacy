@@ -1,0 +1,95 @@
+.user_order_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.user_order_navbar {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.user_order_container {
+    margin-top: 55px;
+    width: 100%;
+    max-width: 1200px; /* Adjust max-width as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user_order_grid {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.user_order_div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user_order_data {
+    font-size: 16px;
+    margin-bottom: 8px;
+    flex: 1 1 150px; /* Adjust flex-basis as needed */
+}
+
+.user_order_orderitem_div {
+    display: flex;
+    flex-direction: column;
+    flex: 2 1 300px; /* Adjust flex-basis as needed */
+}
+
+.user_order_orderitem {
+    display: flex;
+    flex-direction: column; /* Column direction for better readability on smaller screens */
+    padding-top: 8px;
+    margin-top: 8px;
+}
+
+.user_order_orderitem_data {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.user_order_btn_div {
+    flex: 1 1 150px; /* Adjust flex-basis as needed */
+    margin-top: 16px;
+    text-align: right;
+}
+
+.user_order_text {
+    font-size: 14px;
+    color: #555;
+}
+
+.user_order_btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.user_order_btn:hover {
+    background-color: #45a049;
+}
+
+.user_order_message {
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+}
