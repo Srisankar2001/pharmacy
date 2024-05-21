@@ -27,7 +27,7 @@ function Home(){
                 getId()
             }
         }catch(error){
-            console.log(error)
+            //Todo
         }
     }
 
@@ -43,7 +43,7 @@ function Home(){
                 })
             }
         }catch(error){
-            console.log(error)
+            //Todo
         }
     }
     isUser()
@@ -83,7 +83,7 @@ function Home(){
                     {isAuth ? 
                     <input type="button" value="Add to Cart" onClick={()=>handleCart(state.id,item.id)} className="user_home_item_btn"/>
                     :
-                    <input type="button" value="Add to Cart" onClick={()=>{navigate("/")}} className="user_home_item_btn"/>}
+                    <input type="button" value="Add to Cart" onClick={()=>{navigate("/signin")}} className="user_home_item_btn"/>}
                 </div>
             </div>
         ))

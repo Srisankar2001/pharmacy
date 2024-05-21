@@ -12,11 +12,11 @@ function AdminNavbar(){
         try{
             const response = await Axios.get("http://localhost:3001/auth/isAdmin")
             if(!response.data.status){
-                navigate("/")
+                navigate("/signin")
             }
         }catch(error){
             console.log(error)
-            navigate("/")
+            navigate("/signin")
         }
     }
     isAdmin()
@@ -26,7 +26,7 @@ function AdminNavbar(){
             <h1 className="admin_dashboard_heading">Menu</h1>
             <ul className="admin_navbar_ul">
                 <li className="admin_navbar_li">
-                    <a href="/dashboard" className="admin_navbar_link">Dashboard</a>
+                    <a href="/" className="admin_navbar_link">Dashboard</a>
                 </li>
                 <li className="admin_navbar_li">
                     <a href="/addadmin" className="admin_navbar_link">Add Admin</a>

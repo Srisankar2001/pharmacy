@@ -3,18 +3,20 @@
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+    font-family: Arial, sans-serif;
 }
 
 .user_cart_navbar {
     width: 100%;
     padding: 10px;
-    background-color: #f0f0f0;
-    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .user_cart_container {
     width: 80%;
-    margin-top: 20px;
+    margin-top: 45px;
 }
 
 .user_cart_list {
@@ -23,8 +25,11 @@
     align-items: center;
     justify-content: space-between;
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .user_cart_item_image {
@@ -32,43 +37,99 @@
     height: 100px;
     object-fit: cover;
     margin-right: 20px;
-}
-
-.user_cart_item_info {
-    flex-grow: 1;
+    border-radius: 5px;
 }
 
 .user_cart_item_name {
     font-weight: bold;
     margin-bottom: 5px;
+    flex-grow: 1;
 }
 
 .user_cart_item_quantity,
 .user_cart_item_price {
-    margin-bottom: 5px;
+    margin: 0 10px;
 }
 
 .user_cart_item_input {
     width: 50px;
-    margin-bottom: 5px;
+    margin: 0 10px;
     text-align: center;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
 
 .user_cart_item_btn_div {
-    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .user_cart_item_btn_update,
 .user_cart_item_btn_delete {
     cursor: pointer;
     padding: 5px 10px;
-    margin-right: 5px;
+    margin-top: 5px;
     border: none;
     border-radius: 3px;
-    background-color: #007bff;
     color: #fff;
+    transition: background-color 0.3s;
+}
+
+.user_cart_item_btn_update {
+    background-color: #007bff;
+}
+
+.user_cart_item_btn_update:hover {
+    background-color: #0056b3;
 }
 
 .user_cart_item_btn_delete {
     background-color: #dc3545;
+}
+
+.user_cart_item_btn_delete:hover {
+    background-color: #c82333;
+}
+
+.user_cart_message {
+    text-align: center;
+    margin: 20px;
+    font-size: 18px;
+    color: #555;
+}
+
+.user_cart_order_div {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.user_cart_order,
+.user_cart_clear {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.user_cart_order {
+    background-color: #28a745;
+}
+
+.user_cart_order:hover {
+    background-color: #218838;
+}
+
+.user_cart_clear {
+    background-color: #dc3545;
+}
+
+.user_cart_clear:hover {
+    background-color: #c82333;
 }

@@ -22,9 +22,12 @@ function Order() {
                 const response = await Axios.get("http://localhost:3001/auth/isUser");
                 if (response.data.status) {
                     getId();
+                }else{
+                    navigate("/")
                 }
             } catch (error) {
                 console.log(error);
+                navigate("/")
             }
         };
 
@@ -38,9 +41,12 @@ function Order() {
                         lastname: response.data.data.lastname,
                         email: response.data.data.email,
                     });
+                }else{
+                    navigate("/")
                 }
             } catch (error) {
                 console.log(error);
+                navigate("/")
             }
         };
         isUser();
@@ -60,9 +66,12 @@ function Order() {
                 const response = await Axios.post("http://localhost:3001/order/get", postData, config);
                 if (response.data.status) {
                     setData(response.data.data);
+                }else{
+                    navigate("/")
                 }
             } catch (error) {
                 alert("Error Fetching Data");
+                navigate("/")
             }
         };
 

@@ -8,7 +8,10 @@
 
 .user_order_navbar {
     width: 100%;
-    margin-bottom: 20px;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .user_order_container {
@@ -37,6 +40,8 @@
     padding: 16px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: center;
 }
 
 .user_order_data {
@@ -56,6 +61,8 @@
     flex-direction: column; /* Column direction for better readability on smaller screens */
     padding-top: 8px;
     margin-top: 8px;
+    align-items: center;
+    justify-content: center;
 }
 
 .user_order_orderitem_data {
@@ -66,7 +73,9 @@
 .user_order_btn_div {
     flex: 1 1 150px; /* Adjust flex-basis as needed */
     margin-top: 16px;
-    text-align: right;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .user_order_text {

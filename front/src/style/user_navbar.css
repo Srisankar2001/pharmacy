@@ -12,6 +12,7 @@
     flex-direction: row; /* Align items horizontally */
     justify-content: center; /* Space between heading and links */
     align-items: center; /* Center items vertically */
+    font-family: Arial, sans-serif;
 }
 
 .user_dashboard_heading {

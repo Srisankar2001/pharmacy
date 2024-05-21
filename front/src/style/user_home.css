@@ -4,11 +4,16 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    font-family: Arial, sans-serif;
 }
 
 /* Navbar container */
 .user_home_navbar {
     width: 100%;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 /* Container for the main content */

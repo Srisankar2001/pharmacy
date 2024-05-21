@@ -19,12 +19,13 @@ function AllBlockUser(){
         try{
             const response = await Axios.get("http://localhost:3001/auth/isAdmin")
             if(!response.data.status){
-                navigate("/")
+                navigate("/signin")
             }else{
                 getId()
             }
         }catch(error){
             console.log(error)
+            navigate("/signin")
         }
     }
 
@@ -32,7 +33,7 @@ function AllBlockUser(){
         try{
             const response = await Axios.get("http://localhost:3001/auth/details")
             if(!response.data.status){
-                navigate("/")
+                navigate("/signin")
             }else{
                 setState(prev=>({
                     ...prev,
@@ -41,7 +42,7 @@ function AllBlockUser(){
             }
         }catch(error){
             console.log(error)
-            navigate("/")
+            navigate("/signin")
         }
     }
 
@@ -49,7 +50,7 @@ function AllBlockUser(){
             try{
                 const response = await Axios.post("http://localhost:3001/admin/details",{id:state.id})
                 if(!response.data.status){
-                    navigate("/")
+                    navigate("/signin")
                 }else{
                     setState(prev=>({
                         ...prev,
@@ -60,6 +61,7 @@ function AllBlockUser(){
                 }
             }catch(error){
                 console.log(error)
+                navigate("/signin")
             }
     }
     isAdmin()

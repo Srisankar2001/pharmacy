@@ -61,9 +61,9 @@ function Register(){
                         password: state.password.trim()
                     };
                     const response = await Axios.post("http://localhost:3001/user/register", postData);
-                    if(response.data.data.status){
+                    if(response.data.status){
                         alert(response.data.data.message)
-                        navigate("/")
+                        navigate("/signin")
                     }
                 } catch (error) {
                     console.log(error);
@@ -73,7 +73,8 @@ function Register(){
         }
     }
     return(
-        <div className="register-container">
+       <div className="register-wrapper">
+         <div className="register-container">
             <h1 className="register-heading">Register Form</h1>
             <form className="register-form" onSubmit={handleSubmit} onReset={handleReset}>
                 <div className="register-input-div">
@@ -111,10 +112,11 @@ function Register(){
                     <input type="reset" className="register-button-reset" value="Clear"/>
                 </div>
                 <div className="register-link">
-                    Already have an account.Click Here to Signin.
+                    Already have an account.<a href="/signin">Click Here</a> to Signin.
                 </div>
             </form>
         </div>
+       </div>
     )
 }
 

@@ -19,28 +19,28 @@ router.post("/signin",(req,res)=>{
             if(result.length !== 0){
                 bcrypt.compare(password,result[0].password,(err,response)=>{
                     if(err){
-                        return res.status(400).json({status:false,message:"Decryption Error in Server"})
+                        return res.status(200).json({status:false,message:"Decryption Error in Server"})
                     }else{
                         if(response){
                             jwt.sign({id:result[0].id,role:result[0].role},key,{expiresIn:'1d'},(err,token)=>{
                                 if(err){
-                                    return res.status(400).json({status:false,message:"Token generate error in Server"})
+                                    return res.status(200).json({status:false,message:"Token generate error in Server"})
                                 }else{
                                     if(token){
                                         res.cookie('token',token,{maxAge:60*60*24*1000})
                                         return res.status(200).json({status:true,message:result[0]})
                                     }else{
-                                        return res.status(400).json({status:false,message:"Token generate error in Server"})
+                                        return res.status(200).json({status:false,message:"Token generate error in Server"})
                                     }
                                 }
                             })
                         }else{
-                            return res.status(402).json({status:false,message:"Password is wrong"})
+                            return res.status(200).json({status:false,message:"Password is wrong"})
                         }
                     }
                 })
             }else{
-                return res.status(500).json({status:false,message:"Email not registerd"})
+                return res.status(200).json({status:false,message:"Email not registerd"})
             }
         }
     })

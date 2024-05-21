@@ -1,5 +1,7 @@
-import React from "react";
-import {BrowserRouter as Router , Routes , Route } from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Axios from "axios";
+
 import Register from "./component/register";
 import Signin from "./component/signin";
 import AdminDashboard from "./component/admin/dashboard";
@@ -21,34 +23,59 @@ import Order from "./component/user/order";
 
 
 function App() {
+  Axios.defaults.withCredentials = true;
+  const [isUser, setIsUser] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
+  useEffect(() => {
+    const isUser = async () => {
+      try {
+        const response = await Axios.get("http://localhost:3001/auth/isUser");
+        if (response.data.status) {
+          setIsUser(true)
+        }
+      } catch (error) {
+        //Todo
+      }
+    }
+    const isAdmin = async () => {
+      try {
+        const response = await Axios.get("http://localhost:3001/auth/isAdmin")
+        if (response.data.status) {
+          setIsAdmin(true)
+        }
+      } catch (error) {
+        //Todo
+      }
+    }
+    isUser()
+    isAdmin()
+  })
   return (
     <Router>
       <Routes>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/" element={<Signin/>}/>
+        <Route path="/register" element={<Register />} />
+        <Route path="/signin" element={<Signin />} />
 
         {/* Admin */}
-        <Route path="/dashboard" element={<AdminDashboard/>}/>
-
-        <Route path="/addadmin" element={<AddAdmin/>}/>
-
-        <Route path="/addcategory" element={<AddCategory/>}/>
-
-        <Route path="/addproduct" element={<AddProduct/>}/>
-        <Route path="/allproduct" element={<AllProduct/>}/>
-        <Route path="/expiredproduct" element={<ExpiredProduct/>}/>
-        <Route path="/updateproduct/:id" element={<UpdateProduct/>}/>
-
-        <Route path="/alluser" element={<AllUser/>}/>
-        <Route path="/allblockuser" element={<AllBlockUser/>}/>
-        <Route path="/allunblockuser" element={<AllUnblockUser/>}/>
+        {isAdmin && <Route path="/" element={<AdminDashboard />} />}
+        {isAdmin && <Route path="/addadmin" element={<AddAdmin />} />}
+        {isAdmin && <Route path="/addcategory" element={<AddCategory />} />}
+        {isAdmin && <Route path="/addproduct" element={<AddProduct />} />}
+        {isAdmin && <Route path="/allproduct" element={<AllProduct />} />}
+        {isAdmin && <Route path="/expiredproduct" element={<ExpiredProduct />} />}
+        {isAdmin && <Route path="/updateproduct/:id" element={<UpdateProduct />} />}
+        {isAdmin && <Route path="/alluser" element={<AllUser />} />}
+        {isAdmin && <Route path="/allblockuser" element={<AllBlockUser />} />}
+        {isAdmin && <Route path="/allunblockuser" element={<AllUnblockUser />} />}
 
         {/* User */}
-        <Route path="/home" element={<Home/>}/>
-        <Route path="/product" element={<Product/>}/>
-        <Route path="/cart" element={<Cart/>}/>
-        <Route path="/order" element={<Order/>}/>
-        <Route path="/logout" element={<Logout/>}/>
+        {!isAdmin &&<Route path="/" element={<Home />} />}
+        {!isAdmin &&<Route path="/product" element={<Product />} />}
+        {isUser &&<Route path="/cart" element={<Cart />} />}
+        {isUser && <Route path="/order" element={<Order />} />}
+
+        {(isUser || isAdmin ) && <Route path="/logout" element={<Logout />} />}
+        <Route path="*" element={isAdmin ? <AdminDashboard /> : <Home />} />
       </Routes>
     </Router>
   )

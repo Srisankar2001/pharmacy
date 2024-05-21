@@ -16,7 +16,7 @@ function UserNavbar(){
                 setIsUser(true)
             }
         }catch(error){
-            console.log(error)
+            //Todo
         }
     }
     isUser()
@@ -26,7 +26,7 @@ function UserNavbar(){
             <h1 className="user_dashboard_heading">Menu</h1>
             <ul className="user_navbar_ul">
                 <li className="user_navbar_li">
-                    <a href="/home" className="user_navbar_link">Home</a>
+                    <a href="/" className="user_navbar_link">Home</a>
                 </li>
                 <li className="user_navbar_li">
                     <a href="/product" className="user_navbar_link">Product</a>
@@ -39,6 +39,15 @@ function UserNavbar(){
                 <li className="user_navbar_li">
                     <a href="/order" className="user_navbar_link">Order</a>
                 </li> : null}
+                {isUser ? 
+                <li className="user_navbar_li">
+                    <a href="/logout" className="user_navbar_link">Logout</a>
+                </li> 
+                :
+                <li className="user_navbar_li">
+                <a href="/signin" className="user_navbar_link">Login</a>
+                </li> 
+                }
             </ul>
         </div>
     )

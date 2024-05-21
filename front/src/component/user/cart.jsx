@@ -23,9 +23,12 @@ function Cart() {
                 const response = await Axios.get("http://localhost:3001/auth/isUser");
                 if (response.data.status) {
                     getId();
+                }else{
+                    navigate("/")
                 }
             } catch (error) {
                 console.log(error);
+                navigate("/")
             }
         };
 
@@ -39,9 +42,12 @@ function Cart() {
                         lastname: response.data.data.lastname,
                         email: response.data.data.email,
                     });
+                }else{
+                    navigate("/")
                 }
             } catch (error) {
                 console.log(error);
+                navigate("/")
             }
         };
         isUser();
@@ -61,9 +67,12 @@ function Cart() {
                 const response = await Axios.post("http://localhost:3001/cart/get", postData, config);
                 if (response.data.status) {
                     setData(response.data.data);
+                }else{
+                    navigate("/")
                 }
             } catch (error) {
                 alert("Error Fetching Data");
+                navigate("/")
             }
         };
 
@@ -206,7 +215,7 @@ function Cart() {
             const response = await Axios.post("http://localhost:3001/order/order", postData , config);
             if (response.data.status) {
                 alert(response.data.message);
-                navigate("/home"); 
+                navigate("/")
             } else {
                 console.log(response.data.message);
             }
@@ -228,7 +237,7 @@ function Cart() {
             const response = await Axios.delete("http://localhost:3001/cart/clear", {data :postData} , config);
             if (response.data.status) {
                 alert(response.data.message);
-                navigate("/home"); 
+                navigate("/"); 
             } else {
                 console.log(response.data.message);
             }
